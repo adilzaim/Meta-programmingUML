@@ -8,7 +8,7 @@ class YuTextGenerator implements YuVisitor {
 
     @Override
     public void visit(YuClass yuClass) {
-        if (generatedElements.contains(yuClass.name)) return; // Éviter la duplication
+        if (generatedElements.contains(yuClass.name)) return; // Pour éviter les doublons
         generatedElements.add(yuClass.name);
 
         yumlOutput.append("[").append(yuClass.name);
@@ -68,7 +68,7 @@ class YuTextGenerator implements YuVisitor {
 
     @Override
     public void visit(YuNoAssoc noAssoc) {
-        if (generatedElements.contains(noAssoc.source.name)) return; // Éviter la duplication
+        if (generatedElements.contains(noAssoc.source.name)) return;
         generatedElements.add(noAssoc.source.name);
 
         yumlOutput.append("[").append(noAssoc.source.name).append("]\n");

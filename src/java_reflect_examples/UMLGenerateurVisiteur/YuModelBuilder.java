@@ -33,14 +33,11 @@ class YuModelBuilder {
                     hasAssociations = true;
                 }
             }
-
             if (!hasAssociations) {
                 elements.add(new YuNoAssoc(yuClass));
             }
-
             elements.add(yuClass);
         }
-
         return elements;
     }
 
