@@ -3,12 +3,12 @@ package java_reflect_examples.UMLGenerateurVisiteur;
 
 import java.util.List;
 
-class ville{
+class Ville{
 
 }
-class Library extends ville{
-    List<Book> books; // card 0..*
-    Address address;  // card  1
+class Library extends Ville{
+    List<Book> aggregatedBooks; // card 0..*
+    Address composedAddress;  // card  1
 }
 
 class Book {
@@ -24,15 +24,24 @@ class Address {
 class Publisher {
     String name;        //card 1
 }
-
 public class Main {
     public static void main(String[] args) {
-        List<YuElement> model = YuModelBuilder.buildModel(Library.class, Book.class, Address.class, Publisher.class);
+        // Étape 1 : Analyser les classes et construire le modèle UML
+        List<YuElement> model = YuModelBuilder.buildModel(
+                Library.class,
+                Book.class,
+                Address.class,
+                Ville.class,
+                Publisher.class
+        );
+
+        // Étape 2 : Parcourir le modèle avec le visiteur
         YuTextGenerator generator = new YuTextGenerator();
         for (YuElement element : model) {
             element.accept(generator);
         }
 
+        // Étape 3 : Afficher le résultat yUML
         System.out.println(generator.getOutput());
     }
 }
