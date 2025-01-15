@@ -26,7 +26,6 @@ class Publisher {
 }
 public class Main {
     public static void main(String[] args) {
-        // Étape 1 : Analyser les classes et construire le modèle UML
         List<YuElement> model = YuModelBuilder.buildModel(
                 Library.class,
                 Book.class,
@@ -35,13 +34,11 @@ public class Main {
                 Publisher.class
         );
 
-        // Étape 2 : Parcourir le modèle avec le visiteur
         YuTextGenerator generator = new YuTextGenerator();
         for (YuElement element : model) {
             element.accept(generator);
         }
 
-        // Étape 3 : Afficher le résultat yUML
         System.out.println(generator.getOutput());
     }
 }
